@@ -282,7 +282,7 @@ const Contact = () => {
                 Email Me Directly
               </a>
               <a
-                href="tel:+91960859088"
+                href="tel:+919608598088"
                 className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center"
               >
                 <Phone className="w-5 h-5 mr-2" />
