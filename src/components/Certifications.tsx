@@ -1,5 +1,4 @@
-import React from 'react';
-import { Award, ExternalLink, Calendar, CheckCircle } from 'lucide-react';
+import { Award, CheckCircle, ExternalLink } from 'lucide-react';
 
 const Certifications = () => {
   const certifications = [
@@ -9,7 +8,8 @@ const Certifications = () => {
       platform: "Coursera",
       category: "Machine Learning",
       color: "blue",
-      verified: true
+      verified: true,
+      certificateUrl: "https://drive.google.com/file/d/1dTKPtUPX7DUh4c-Y-snuo9NsfT6aWu87/view"
     },
     {
       title: "Introduction to Big Data",
@@ -17,7 +17,8 @@ const Certifications = () => {
       platform: "Coursera",
       category: "Data Science",
       color: "teal",
-      verified: true
+      verified: true,
+      certificateUrl: "https://drive.google.com/file/d/1ELjdvkgLHP22r1EpvBfngiCBHyNic454/view"
     },
     {
       title: "Data Visualization with Tableau",
@@ -25,7 +26,8 @@ const Certifications = () => {
       platform: "Coursera",
       category: "Data Visualization",
       color: "purple",
-      verified: true
+      verified: true,
+      certificateUrl: "https://drive.google.com/file/d/13QnYmPLyqOXgh6ZdlXfgi-H4hhRm30tK/view"
     },
     {
       title: "The Bits and Bytes of Computer Networking",
@@ -33,7 +35,8 @@ const Certifications = () => {
       platform: "Coursera",
       category: "Networking",
       color: "green",
-      verified: true
+      verified: true,
+      certificateUrl: "https://drive.google.com/file/d/15FF_Ra8lNgXWQmwDuyhACGZk9NRZ90Li/view"
     },
     {
       title: "DSA Self Paced",
@@ -41,7 +44,8 @@ const Certifications = () => {
       platform: "GeeksforGeeks",
       category: "Programming",
       color: "orange",
-      verified: true
+      verified: true,
+      certificateUrl: "https://drive.google.com/file/d/1ys5skbju0eCwe8sE2C_sZyv44nNGD5Gg/view"
     }
   ];
 
@@ -79,6 +83,14 @@ const Certifications = () => {
   };
 
   const categories = [...new Set(certifications.map(cert => cert.category))];
+
+  const handleCertificateClick = (certificateUrl: string, title: string) => {
+    if (certificateUrl.includes('your-certificate-link')) {
+      alert(`Please update the certificate URL for "${title}" in the Certifications component with your actual certificate link.`);
+      return;
+    }
+    window.open(certificateUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section id="certifications" className="py-20 bg-white">
@@ -153,7 +165,10 @@ const Certifications = () => {
                   </div>
 
                   {/* Action Button */}
-                  <button className={`w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r ${colors.bg} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform group-hover:scale-105`}>
+                  <button 
+                    onClick={() => handleCertificateClick(cert.certificateUrl, cert.title)}
+                    className={`w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r ${colors.bg} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform group-hover:scale-105`}
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Certificate
                   </button>
@@ -214,6 +229,13 @@ const Certifications = () => {
               </span>
             </div>
           </div>
+        </div>
+
+        {/* Instructions for updating certificate links */}
+        <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <p className="text-yellow-800 text-sm">
+            <strong>Note:</strong> To add your actual certificate links, update the <code>certificateUrl</code> values in the certifications array with your real certificate URLs from Coursera, GeeksforGeeks, etc.
+          </p>
         </div>
       </div>
     </section>
